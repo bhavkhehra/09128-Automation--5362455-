@@ -3,25 +3,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import unittest
+import pytest
 
 
-def expected():
-    webdriver.Chrome("C:\\Users\\HP\\Downloads\\chromedriver_win32\\chromedriver.exe")
+def test():
+   driver = webdriver.Chrome("C:\\Users\\HP\\Downloads\\chromedriver_win32\\chromedriver.exe")
 
-    driver.get('http://youtube.com')
+   driver.get('http://youtube.com')
+   driver.find_element(By.NAME, "search_query").send_keys("carry")
+   expected = "displaying at least 5 search results"
 
-    driver.find_element(By.CLASS_NAME, "search_query").send_keys("carry").click()
+   actual = "displaying at least 5 search results"
 
-    expected = string("displaying at least 5 search results")
-
-
-def actual():
-    webdriver.Chrome("C:\\Users\\HP\\Downloads\\chromedriver_win32\\chromedriver.exe")
-
-    driver.get('http://youtube.com')
-
-    driver.find_element(By.CLASS_NAME, "sbsb_b")
-    actual = string("displaying at least 5 search results")
-
-
-assert actual() == expected()
+   assert expected == actual
